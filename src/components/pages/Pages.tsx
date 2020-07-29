@@ -1,9 +1,9 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './home/Home';
-import NoMatch from './noMatch/NoMatch';
 import Loading from '../universal/Loading';
-// const LoginSignup = React.lazy(() => import('./loginSignup/LoginSignup'));
+
+const NoMatch = lazy(() => import('./noMatch/NoMatch'));
 
 export interface PagesProps {}
 
