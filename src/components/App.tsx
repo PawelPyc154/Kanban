@@ -1,8 +1,8 @@
 import React from 'react';
+import Pages from './pages/Pages';
 
 function App() {
-  console.log('test');
-  return <div className="App">Test</div>;
+  return <Pages />;
 }
 
 export default App;
