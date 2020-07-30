@@ -28,7 +28,7 @@ a {
 }
 body {
   font-family: Roboto, Arial, sans-serif;
-  background-color: #343A40;
+  background-color: #2ecc71;
   font-size: 16px;
 }
 `;
