@@ -24,8 +24,8 @@ export interface AuthError {
 export interface LogOut {
   type: typeof LOGOUT;
 }
-export interface clearError {
+export interface ClearError {
   type: typeof CLEAR_ERROR;
 }
 
-export type AuthActionTypes = LoginSucces | RegisterSucces | UserLoaded | AuthError | LogOut | clearError;
+export type AuthActionTypes = LoginSucces | RegisterSucces | UserLoaded | AuthError | LogOut | ClearError;

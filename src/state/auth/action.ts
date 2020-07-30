@@ -40,9 +40,9 @@ export const setLogin = (email: string, password: string) =>
     await dispatch(loadUser());
   });
 
-export const setLoginRegisterGoogle = (res: GoogleLoginResponse, strategy: string) =>
+export const setLoginRegisterGoogle = (res: GoogleLoginResponse) =>
   asyncHandlerError(async (dispatch: ThunkDispatch<{}, {}, AuthActionTypes>) => {
-    await axiosWithConfig.post(`/auth/${strategy}/token`, {
+    await axiosWithConfig.post('/auth/google/token', {
       access_token: res.accessToken,
     });
     await dispatch({

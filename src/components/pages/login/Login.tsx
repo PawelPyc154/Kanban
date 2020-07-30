@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import media from '../../../utils/MediaQueries';
+import GoogleButton from './GoogleButton';
 
 export interface LogInProps {}
 
@@ -11,6 +12,7 @@ const LogIn: React.FC<LogInProps> = () => (
     <Label htmlFor="password">Password</Label>
     <Input id="password" type="password" />
     <Button type="button">Login</Button>
+    <GoogleButton />
   </Main>
 );
 
