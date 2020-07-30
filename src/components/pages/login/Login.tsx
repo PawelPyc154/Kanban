@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import React from 'react';
 import media from '../../../utils/MediaQueries';
-import GoogleButton from './GoogleButton';
+import GoogleButton from '../../universal/GoogleButton';
 
 export interface LogInProps {}
 
 const LogIn: React.FC<LogInProps> = () => (
   <Main>
-    <Label htmlFor="login">Login</Label>
-    <Input id="login" type="text" />
+    <Label htmlFor="email">Email</Label>
+    <Input id="email" type="text" />
     <Label htmlFor="password">Password</Label>
     <Input id="password" type="password" />
     <Button type="button">Login</Button>
