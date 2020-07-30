@@ -2,7 +2,7 @@ import React from 'react';
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { setLoginRegisterGoogle } from '../../../state/auth/action';
+import { setLoginRegisterGoogle } from '../../state/auth/action';
 
 export interface FbAndGoogleProps {}
 
