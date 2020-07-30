@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createGlobalStyle } from 'styled-components';
+import { useDispatch } from 'react-redux';
 import Pages from './pages/Pages';
 import Navigation from './navigation/Navigation';
+import { loadUser } from '../state/auth/action';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
   return (
     <>
       <Navigation />
