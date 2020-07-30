@@ -9,7 +9,8 @@ const Navigation: React.FC<NavigationProps> = () => (
     <LogoLink to="/home" activeClassName="activeLink">
       Kanban
     </LogoLink>
-    <NavLinkStyled to="/login">Login</NavLinkStyled>
+    <NavLinkStyled to="/login">LogIn</NavLinkStyled>
+    <NavLinkStyled to="/signin">SignIn</NavLinkStyled>
   </Nav>
 );
 
@@ -25,10 +26,12 @@ const Nav = styled.nav`
 
 const LogoLink = styled(NavLink)`
   font-size: 30px;
+  margin-right: auto;
 `;
+
 const NavLinkStyled = styled(NavLink)`
   font-size: 16px;
-  margin-left: auto;
+  margin-left: 10px;
   &.activeLink {
     font-weight: bold;
   }

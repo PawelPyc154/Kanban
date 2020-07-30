@@ -5,6 +5,7 @@ import Loading from '../universal/Loading';
 
 const NoMatch = lazy(() => import('./noMatch/NoMatch'));
 const LogIn = lazy(() => import('./login/Login'));
+const Signin = lazy(() => import('./signin/Signin'));
 
 export interface PagesProps {}
 
@@ -14,6 +15,7 @@ const Pages: React.FC<PagesProps> = () => (
       <Redirect exact from="/" to="/home" />
       <Route path="/home" component={Home} />
       <Route path="/login" component={LogIn} />
+      <Route path="/signin" component={Signin} />
       <Route path="*" component={NoMatch} />
     </Switch>
   </Suspense>
