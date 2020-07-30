@@ -1,10 +1,12 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Pages from './pages/Pages';
+import Navigation from './navigation/Navigation';
 
 function App() {
   return (
     <>
+      <Navigation />
       <Pages />
       <GlobalStyle />
     </>
@@ -26,6 +28,7 @@ a {
 }
 body {
   font-family: Roboto, Arial, sans-serif;
-  background-color: #181818;
+  background-color: #343A40;
+  font-size: 16px;
 }
 `;
