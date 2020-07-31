@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import media from '../../../utils/MediaQueries';
 import GoogleButton from '../../universal/GoogleButton';
 import { AppState } from '../../../state/allReducers';
@@ -43,6 +44,14 @@ const Signin: React.FC<SigninProps> = () => {
       });
     }
   }, [error, setError]);
+
+  const history = useHistory();
+  const { user } = useSelector((state: AppState) => state.AuthReducer);
+  useEffect(() => {
+    if (user) {
+      history.push('/');
+    }
+  }, [user, history]);
   return (
     <main>
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -58,7 +67,7 @@ const Signin: React.FC<SigninProps> = () => {
           {errors.password ? errors.password.message : 'Password'}
         </Label>
         <Input name="password" id="password" type="password" ref={register} />
-        <Submit type="submit" />
+        <Button type="submit">SignIn</Button>
         <GoogleButton />
       </Form>
     </main>
@@ -93,7 +102,7 @@ const Label = styled.label`
     color: red;
   }
 `;
-const Submit = styled.input`
+const Button = styled.button`
   height: 40px;
   margin: 10px 0 20px 0;
   font-size: 30px;
