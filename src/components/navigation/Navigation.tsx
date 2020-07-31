@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import LogoutButton from './LogoutButton';
 
 export interface NavigationProps {}
 
@@ -9,6 +10,7 @@ const Navigation: React.FC<NavigationProps> = () => (
     <LogoLink to="/home" activeClassName="activeLink">
       Kanban
     </LogoLink>
+    <LogoutButton />
     <NavLinkStyled to="/login">LogIn</NavLinkStyled>
     <NavLinkStyled to="/signin">SignIn</NavLinkStyled>
   </Nav>
