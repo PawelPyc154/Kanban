@@ -49,22 +49,22 @@ const Signin: React.FC<SigninProps> = () => {
   const { user } = useSelector((state: AppState) => state.AuthReducer);
   useEffect(() => {
     if (user) {
-      history.push('/');
+      history.push('/my-boards');
     }
   }, [user, history]);
   return (
     <main>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Label htmlFor="email" className={errors.email && 'error'}>
-          {errors.email ? errors.email.message : 'Email'}
+          {errors.email?.message || 'Email'}
         </Label>
         <Input name="email" id="email" type="text" ref={register} />
         <Label htmlFor="name" className={errors.name && 'error'}>
-          {errors.name ? errors.name.message : 'Name'}
+          {errors.name?.message || 'Name'}
         </Label>
         <Input name="name" id="name" type="text" ref={register} />
         <Label htmlFor="password" className={errors.password && 'error'}>
-          {errors.password ? errors.password.message : 'Password'}
+          {errors.password?.message || 'Password'}
         </Label>
         <Input name="password" id="password" type="password" ref={register} />
         <Button type="submit">SignIn</Button>

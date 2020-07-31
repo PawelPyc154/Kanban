@@ -47,7 +47,7 @@ const Login: React.FC<LoginProps> = () => {
   const { user } = useSelector((state: AppState) => state.AuthReducer);
   useEffect(() => {
     if (user) {
-      history.push('/');
+      history.push('/my-boards');
     }
   }, [user, history]);
 
@@ -55,11 +55,11 @@ const Login: React.FC<LoginProps> = () => {
     <main>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Label htmlFor="email" className={errors.email && 'error'}>
-          {errors.email ? errors.email.message : 'Email'}
+          {errors.email?.message || 'Email'}
         </Label>
         <Input name="email" id="email" type="text" ref={register} />
         <Label htmlFor="password" className={errors.password && 'error'}>
-          {errors.password ? errors.password.message : 'Password'}
+          {errors.password?.message || 'Password'}
         </Label>
         <Input name="password" id="password" type="password" ref={register} />
         <Button type="submit">LogIn</Button>
