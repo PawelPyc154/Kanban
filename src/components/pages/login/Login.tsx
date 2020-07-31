@@ -1,24 +1,76 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useEffect } from 'react';
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import media from '../../../utils/MediaQueries';
 import GoogleButton from '../../universal/GoogleButton';
+import { AppState } from '../../../state/allReducers';
+import { setLogin } from '../../../state/auth/action';
 
-export interface LogInProps {}
+interface Data {
+  email: string;
+  password: string;
+}
+const schema = yup.object({
+  email: yup.string().email('Invalid email!').required('Email is required!'),
+  password: yup.string().required('Password is required!').min(6, 'Too short!'),
+});
 
-const LogIn: React.FC<LogInProps> = () => (
-  <Main>
-    <Label htmlFor="email">Email</Label>
-    <Input id="email" type="text" />
-    <Label htmlFor="password">Password</Label>
-    <Input id="password" type="password" />
-    <Button type="button">Login</Button>
-    <GoogleButton />
-  </Main>
-);
+export interface LoginProps {}
 
-export default LogIn;
+const Login: React.FC<LoginProps> = () => {
+  const dispatch = useDispatch();
+  const { error } = useSelector((state: AppState) => state.AuthReducer);
+  const { register, handleSubmit, errors, setError } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit = async ({ email, password }: Data) => {
+    await dispatch(setLogin(email, password));
+  };
 
-const Main = styled.main`
+  useEffect(() => {
+    // handle error from server
+    if (error && typeof error !== 'string') {
+      Object.entries(error).forEach(([key, value]) => {
+        setError(key, {
+          type: 'manual',
+          message: value,
+        });
+      });
+    }
+  }, [error, setError]);
+
+  const history = useHistory();
+  const { user } = useSelector((state: AppState) => state.AuthReducer);
+  useEffect(() => {
+    if (user) {
+      history.push('/');
+    }
+  }, [user, history]);
+
+  return (
+    <main>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <Label htmlFor="email" className={errors.email && 'error'}>
+          {errors.email ? errors.email.message : 'Email'}
+        </Label>
+        <Input name="email" id="email" type="text" ref={register} />
+        <Label htmlFor="password" className={errors.password && 'error'}>
+          {errors.password ? errors.password.message : 'Password'}
+        </Label>
+        <Input name="password" id="password" type="password" ref={register} />
+        <Button type="submit">LogIn</Button>
+        <GoogleButton />
+      </Form>
+    </main>
+  );
+};
+export default Login;
+
+const Form = styled.form`
   width: auto;
   max-width: 400px;
   margin: auto;
@@ -41,6 +93,9 @@ const Input = styled.input`
 `;
 const Label = styled.label`
   font-size: 20px;
+  &.error {
+    color: red;
+  }
 `;
 const Button = styled.button`
   height: 40px;
