@@ -2,10 +2,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 import { AppState } from '../../state/allReducers';
+import { MyBoardsProps } from '../pages/myBoards/MyBoards';
+
+type PrivateComponent = MyBoardsProps;
 
 export interface PrivateRouteProps {
   path: string;
-  component: React.LazyExoticComponent<React.FC<any>>;
+  component: React.LazyExoticComponent<React.FC<PrivateComponent>>;
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, ...rest }) => {
@@ -19,7 +22,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, ...re
         ) : (
           <Redirect
             to={{
-              pathname: '/login-signup',
+              pathname: '/login',
               state: { from: props.location },
             }}
           />
