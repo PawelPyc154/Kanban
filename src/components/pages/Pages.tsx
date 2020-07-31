@@ -18,8 +18,8 @@ const Pages: React.FC<PagesProps> = () => (
       <Route path="/home" component={Home} />
       <Route path="/login" component={LogIn} />
       <Route path="/signin" component={Signin} />
-      <Route path="*" component={NoMatch} />
       <PrivateRoute path="/my-boards" component={MyBoards} />
+      <Route path="*" component={NoMatch} />
     </Switch>
   </Suspense>
 );
