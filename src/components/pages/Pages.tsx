@@ -6,8 +6,9 @@ import PrivateRoute from '../universal/PrivateRoute';
 
 const NoMatch = lazy(() => import('./noMatch/NoMatch'));
 const LogIn = lazy(() => import('./login/Login'));
-const Signin = lazy(() => import('./signin/Signin'));
+const Signin = lazy(() => import('./signup/Signup'));
 const MyBoards = lazy(() => import('./myBoards/MyBoards'));
+const Board = lazy(() => import('./border/Board'));
 
 export interface PagesProps {}
 
@@ -18,6 +19,7 @@ const Pages: React.FC<PagesProps> = () => (
       <Route path="/home" component={Home} />
       <Route path="/login" component={LogIn} />
       <Route path="/signin" component={Signin} />
+      <Route path="/board" component={Board} />
       <PrivateRoute path="/my-boards" component={MyBoards} />
       <Route path="*" component={NoMatch} />
     </Switch>
